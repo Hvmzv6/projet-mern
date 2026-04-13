@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
     email,
     password,
     role = "student",
+    level = null,
+    branch = null,
   ) => {
     setLoading(true);
     try {
@@ -30,6 +32,8 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
         role,
+        level,
+        branch,
       });
       setToken(response.data.token);
       setUser(response.data.user);

@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.js";
+import courseRoutes from "./routes/courses.js";
+import assignmentRoutes from "./routes/assignments.js";
 
 dotenv.config();
 
@@ -26,6 +28,8 @@ mongoose
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/courses", courseRoutes);
+app.use("/api/assignments", assignmentRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {

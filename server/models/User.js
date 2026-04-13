@@ -38,6 +38,17 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    // Student-specific fields
+    level: {
+      type: String,
+      enum: ["1st Year", "2nd Year", "3rd Year"],
+      default: null,
+    },
+    branch: {
+      type: String,
+      enum: ["Computer Science", "Embedded Systems", "Economics"],
+      default: null,
+    },
   },
   { timestamps: true },
 );

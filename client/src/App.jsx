@@ -12,6 +12,11 @@ import { TeacherDashboard } from "./dashboards/TeacherDashboard";
 import "./index.css";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import { CoursesPage } from "./pages/CoursesPage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { AssignmentsPage } from "./pages/AssignmentsPage";
+import { AssignmentSubmitPage } from "./pages/AssignmentSubmitPage";
+import { SubmissionsPage } from "./pages/SubmissionsPage";
 
 function App() {
   return (
@@ -44,6 +49,51 @@ function App() {
             element={
               <PrivateRoute requiredRole="student">
                 <StudentDashboard />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/courses"
+            element={
+              <PrivateRoute>
+                <CoursesPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/assignments"
+            element={
+              <PrivateRoute>
+                <AssignmentsPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/assignment/:id/submit"
+            element={
+              <PrivateRoute requiredRole="student">
+                <AssignmentSubmitPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/assignment/:id/submissions"
+            element={
+              <PrivateRoute>
+                <SubmissionsPage />
               </PrivateRoute>
             }
           />

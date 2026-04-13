@@ -15,13 +15,23 @@ const generateToken = (user) => {
 
 export const register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, role } = req.body;
+    const { firstName, lastName, email, password, role, level, branch } = req.body;
 
     // Validation
     if (!firstName || !lastName || !email || !password) {
       return res
         .status(400)
         .json({ message: "Please provide all required fields" });
+    }
+
+    // Validate level and branch for students
+    const userRole = role || "student";
+    if (userRole === "student") {
+      if (!level || !branch) {
+        return res
+          .status(400)
+          .json({ message: "Level and branch are required for student accounts" });
+      }
     }
 
     // Check if user already exists
@@ -36,7 +46,8 @@ export const register = async (req, res) => {
       lastName,
       email,
       password,
-      role: role || "student",
+      role: userRole,
+      ...(userRole === "student" && { level, branch }),
     });
 
     await user.save();
